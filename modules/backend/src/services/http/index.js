@@ -1,8 +1,9 @@
 import express from 'express'
 import config from '../../config'
+import { errorMiddleware } from './middleware/error'
 
 
-const app = express()
+app.use(errorMiddleware)
 
 const listen = () => {
   app.listen(config.port, () => {
