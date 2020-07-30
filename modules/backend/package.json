@@ -18,6 +18,7 @@
     "nodemon": "^2.0.4"
   },
   "dependencies": {
+    "@google-cloud/firestore": "^4.1.2",
     "express": "^4.17.1"
   }
 }

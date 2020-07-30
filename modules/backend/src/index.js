@@ -1,5 +1,6 @@
 import { listen } from './services/http'
+import { connect } from './services/database'
 
-listen()
+connect().then(listen)
 
 

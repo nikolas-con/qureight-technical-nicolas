@@ -1,3 +1,4 @@
 node_modules
+firestoreConfig.json
 .env
 .DS_Store
