@@ -1,0 +1,4 @@
+const AUTHNTICATE = 'AUTHNTICATE'
+
+
+export { AUTHNTICATE }
