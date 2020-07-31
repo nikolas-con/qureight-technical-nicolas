@@ -9,12 +9,13 @@ const create = async (req, res) => {
   if (!dateOfBirth || !fullName || !notes || !height)
     return res.status(400).json({ message: 'Incomplete request' })
 
-  const patientRecords = { doctorId, fullName, age: ageCalculator(dateOfBirth), notes, height }
+  const patientRecords = { doctorId, fullName, age: ageCalculator(dateOfBirth), dateOfBirth, notes, height }
 
   const patientRecordsDoc = await firestore.collection('patientRecords').add(patientRecords)
 
-  patientRecords.id = patientRecordsDoc.id
-  
+  patientRecords.patientRecordId = patientRecordsDoc.id
+
+  delete patientRecords.doctorId
   res.status(200).json({ patientRecords })
 }
 

@@ -18,12 +18,14 @@ const edit = async (req, res) => {
   if (patientRecord.doctorId !== doctorId)
     return res.status(401).json({ message: 'This doctor is unauthorized for this patient' })
 
-  const patientRecords = { doctorId, fullName, age: ageCalculator(dateOfBirth), notes, height }
+  const patientRecords = { doctorId, fullName, age: ageCalculator(dateOfBirth),dateOfBirth, notes, height }
 
-  const patientRecordsDoc = await firestore.collection('patientRecords').doc(patientRecordId).update(patientRecords)
+  await firestore.collection('patientRecords').doc(patientRecordId).update(patientRecords)
 
-  patientRecords.id = patientRecordsDoc.id
+  patientRecords.patientRecordId = patientRecordId
 
+  delete patientRecords.doctorId
+  
   res.status(200).json({ patientRecords })
 }
 

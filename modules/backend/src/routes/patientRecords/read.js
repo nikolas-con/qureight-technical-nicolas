@@ -6,7 +6,12 @@ const read = async (req, res) => {
 
   const { docs: patientRecordsDocs } = await firestore.collection('patientRecords').where('doctorId', '==', doctorId).get()
 
-  const patientRecords = patientRecordsDocs.map((doc) => (doc.data()))
+  const patientRecords = patientRecordsDocs.map((doc) => {
+    const record = doc.data()
+    record.patientRecordId = doc.id
+    delete record.doctorId
+    return record
+  })
   
   res.status(200).json({ patientRecords })
 }
