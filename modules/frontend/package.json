@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "env-cmd -f .env nodemon --exec babel-node --debug --presets @babel/preset-env --watch server server/index.js"
+    "dev": "env-cmd -f .env nodemon --exec babel-node --debug --presets @babel/preset-env --watch server server/index.js",
+    "build": "rimraf builds/prod && parcel build public/index.html --out-dir builds/prod/web --no-source-maps && babel server --presets @babel/preset-env --out-dir builds/prod",
+    "prod_l": "env-cmd -f .env.production node builds/prod/index.js",
+    "prod": "node builds/prod/index.js"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +19,8 @@
     "@babel/preset-env": "^7.10.4",
     "@babel/preset-react": "^7.10.4",
     "env-cmd": "^10.1.0",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "rifraf": "^2.0.3"
   },
   "browserslist": {
     "production": [
