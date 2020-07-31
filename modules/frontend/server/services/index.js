@@ -3,6 +3,7 @@ import config from './config'
 import { staticMiddleware } from './middleware/static'
 import { proxyMiddleware } from './middleware/proxy'
 import { fallbackMiddleware } from './middleware/fallback'
+import { errorMiddleware } from './middleware/error'
 import { headersMiddleware } from './middleware/headers'
 
 const app = express()
@@ -14,6 +15,8 @@ app.use(staticMiddleware)
 app.use(headersMiddleware)
 
 app.get('*', fallbackMiddleware)
+
+app.use(errorMiddleware)
 
 const listen = () => {
   app.listen(config.port, () => {
