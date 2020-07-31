@@ -1,6 +1,7 @@
 import React from 'react'
 import { Pane } from 'evergreen-ui'
 import AddPatientRecord from '../../components/dashboard/AddPatientRecord'
+import ListOfPatientRecord from '../../components/dashboard/ListOfPatientRecord'
 import './style.scss'
 
 const Dashboard = () => {
@@ -11,6 +12,7 @@ const Dashboard = () => {
         <span>Dashboard</span>
       </Pane>
       <AddPatientRecord/>
+      <ListOfPatientRecord/>
     </Pane>
   )
 }
