@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { register } from '../../utilities/store/doctor/actions'
-import './style.css'
+import { Pane, Button, TextInput } from 'evergreen-ui'
+import './style.scss'
 
 const Register = () => {
 
@@ -17,16 +18,18 @@ const Register = () => {
   }
 
   return (
-    <div className="register-container">
-      <h1>Register</h1>
-      <div className="register-form">
-      <input onChange={(e)=> setFullName(e.target.value)} className="register-inputs" type="text" placeholder="Enter Your Full Name" name="fullName" required/>
-      <input onChange={(e)=> setSpecialtyDoctor(e.target.value)} className="register-inputs" type="text" placeholder="Enter Your specialty" name="specialtyDoctor" required/>
-      <input onChange={(e)=> setEmail(e.target.value)} className="register-inputs" type="email" placeholder="Enter Email" name="email" required/>
-      <input onChange={(e)=> setPassword(e.target.value)} className="register-inputs" type="password" placeholder="Enter Password" name="password" required/>
-      <button onClick={handleRegister} className="register-button" type="submit">Register</button>
-    </div>
-    </div>
+    <Pane className="register-container">
+      <Pane className="register-title">
+        <span>Register</span>
+      </Pane>
+      <Pane className="register-form">
+        <TextInput onChange={(e) => setFullName(e.target.value)}  type="text" placeholder="Full Name" name="fullName" required />
+        <TextInput onChange={(e) => setSpecialtyDoctor(e.target.value)}  type="text" placeholder="Specialty" name="specialtyDoctor" required />
+        <TextInput onChange={(e) => setEmail(e.target.value)}  type="email" placeholder="Email" name="email" required />
+        <TextInput onChange={(e) => setPassword(e.target.value)}  type="password" placeholder="Password" name="password" required />
+        <Button onClick={handleRegister} marginTop={4} appearance="primary">Register</Button>
+      </Pane>
+    </Pane>
   )
 }
 

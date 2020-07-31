@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import { login } from '../../utilities/store/doctor/actions'
-import './style.css'
 import { useDispatch } from 'react-redux'
+import { Button, Pane, TextInput } from 'evergreen-ui'
+import { useHistory } from 'react-router-dom'
+import './style.scss'
 
 const Login = () => {
 
   const dispatch = useDispatch()
+  const history = useHistory()
 
-  
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -16,14 +19,17 @@ const Login = () => {
   }
 
   return (
-    <div className="login-container">
-      <h1>Login</h1>
-      <div className="login-form">
-        <input onChange={(e)=> setEmail(e.target.value)} className="login-inputs" type="email" placeholder="Enter Email" name="email" required/>
-        <input onChange={(e)=> setPassword(e.target.value)} className="login-inputs" type="password" placeholder="Enter Password" name="password" required/>
-        <button onClick={handleLogin} className="login-button">Login</button>
-      </div>
-    </div>
+    <Pane className="login-container">
+      <Pane className="login-title">
+        <span>Login</span>
+      </Pane>
+      <Pane className="login-form">
+        <TextInput onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Enter Email" name="email" required />
+        <TextInput onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Enter Password" name="password" required />
+        <Button marginTop={4} appearance="primary" onClick={handleLogin}>Login</Button>
+      </Pane>
+      <Button onClick={()=> history.replace('/register')} marginTop={4} height={40} appearance="minimal" intent="none">Go To Register</Button>
+    </Pane>
   )
 }
 
