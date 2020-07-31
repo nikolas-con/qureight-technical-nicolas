@@ -10,7 +10,7 @@ const verifyJWT = async (req, res, next) => {
   try {
     const decoded = await jwt.verify(token, process.env.JWT_SECRET)
 
-    req.user = decoded
+    req.doctor = decoded
 
     next()
 
@@ -24,4 +24,4 @@ const generateAuthToken = (doctorId, email) => {
   const token = jwt.sign({ doctorId, email}, process.env.JWT_SECRET)
   return token
 }
-export { generateAuthToken }
+export { generateAuthToken, verifyJWT }
