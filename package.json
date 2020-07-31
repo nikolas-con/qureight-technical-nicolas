@@ -8,6 +8,9 @@
   ],
   "scripts": {
     "dev": "lerna run dev",
+    "build": "lerna run build",
+    "prod_l": "lerna run prod_l",
+    "prod": "lerna run prod",
     "bootstrap": "lerna bootstrap --ci"
   },
   "author": "",

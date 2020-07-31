@@ -1,6 +1,8 @@
 node_modules
 firestoreConfig.json
 .env
+.env.production
 .DS_Store
 .cache
 dist
+builds
