@@ -3,28 +3,23 @@ import bcrypt from 'bcrypt'
 import { generateAuthToken } from '../../services/http/middleware/jwt'
 
 const register = async (req, res, next) => {
-  try {
-    const { email, password, fullName, specialtyDoctor } = req.body
+  const { email, password, fullName, specialtyDoctor } = req.body
 
-    if (!email || !password || !fullName || !specialtyDoctor)
-      return res.status(400).json({ message: 'Incomplete request' })
+  if (!email || !password || !fullName || !specialtyDoctor)
+    return res.status(400).json({ message: 'Incomplete request' })
 
-    const { docs: doctorDoc } = await firestore.collection('doctor').where('email', '==', email).get()
+  const { docs: doctorDoc } = await firestore.collection('doctor').where('email', '==', email).get()
 
-    if (doctorDoc.length) 
-      return res.status(400).json({ message: 'This is an existig doctor' })
-    
-    const hash = await bcrypt.hash(password, 10)
+  if (doctorDoc.length)
+    return res.status(400).json({ message: 'This is an existig doctor' })
 
-    const doctor = await firestore.collection('doctor').add({ email, hash, fullName, specialtyDoctor })
+  const hash = await bcrypt.hash(password, 10)
 
-    const token = await generateAuthToken(doctor.id, email)
+  const doctor = await firestore.collection('doctor').add({ email, hash, fullName, specialtyDoctor })
 
-    res.status(200).json({ token })
+  const token = await generateAuthToken(doctor.id, email)
 
-  } catch (error) {
-    next(error)
-  }
+  res.status(200).json({ token })
 
 }
 
