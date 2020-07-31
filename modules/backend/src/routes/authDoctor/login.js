@@ -13,8 +13,8 @@ const login = async (req, res, next) => {
     return res.status(404).json({ message: 'This doctor does not exist' })
 
   const doctor = doctorDoc[0].data()
-  doctor.id = doctorDoc[0].id
 
+  doctor.id = doctorDoc[0].id
 
   const isPasswordMatch = await bcrypt.compare(password, doctor.hash)
 

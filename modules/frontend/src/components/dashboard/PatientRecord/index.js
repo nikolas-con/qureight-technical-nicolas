@@ -1,15 +1,15 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { Pane, TextInput, Textarea, Button } from 'evergreen-ui'
 import { useDispatch } from 'react-redux'
 import { deleteRecord, edit } from '../../../utilities/store/patientRecords/actions'
 import './style.scss'
 
-const Buttons = ({setEdited, edited, handlingSummit, handlingDelete}) => {
+const Buttons = ({ setEdited, edited, handlingSummit, handlingDelete }) => {
 
-  if(edited) {
+  if (edited) {
     return (
       <Pane>
-        <Button onClick={()=> setEdited(!edited)} appearance="minimal" intent="none" >Edit</Button>
+        <Button onClick={() => setEdited(!edited)} appearance="minimal" intent="none" >Edit</Button>
         <Button onClick={handlingDelete} appearance="minimal" intent="none">Delete</Button>
       </Pane>
     )
@@ -47,9 +47,9 @@ const PatientRecord = ({ fullName, age, notes, height, patientRecordId, dateOfBi
     <Pane className="patient-record-container">
       <TextInput disabled={edited} onChange={(e) => setFullNameEdited(e.target.value)} value={fullNameEdited} type="text" placeholder="Full Name" name="fullName" required />
       <TextInput disabled={edited} onChange={(e) => setHeightEdited(e.target.value)} value={heightEdited} type="text" placeholder="height in centimetres" name="height" required />
-      <TextInput disabled={edited} onChange={(e) => setDateOfBirthEdited(e.target.value)} value={edited ? age: dateOfBirthEdited} type={edited ? 'text' : 'date'} placeholder="Date of birth (ex.2020-01-21)" name="age" required />
+      <TextInput disabled={edited} onChange={(e) => setDateOfBirthEdited(e.target.value)} value={edited ? age : dateOfBirthEdited} type={edited ? 'text' : 'date'} placeholder="Date of birth (ex.2020-01-21)" name="age" required />
       <Textarea disabled={edited} width={100} onChange={(e) => setNotesEdited(e.target.value)} value={notesEdited} placeholder="Notes" name="notes" required />
-      <Buttons handlingSummit={handlingSummit} handlingDelete={handlingDelete} setEdited={setEdited} edited={edited}/>
+      <Buttons handlingSummit={handlingSummit} handlingDelete={handlingDelete} setEdited={setEdited} edited={edited} />
     </Pane>
   )
 }
